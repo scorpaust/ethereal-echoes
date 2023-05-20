@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController instance;
 
+    private Vector3 bottomLeftLimit, topRightLimit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +46,8 @@ public class PlayerController : MonoBehaviour
         }
         else
 		{
-            Destroy(gameObject);
+            if (instance != this)
+                Destroy(gameObject);
 		}
     }
 
@@ -62,6 +65,16 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
 
             anim.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
-        }   
+        }
+
+        // Keep the player inside the bounds
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
     }
+
+    public void SetBounds(Vector3 bottomLeft, Vector3 topRight)
+	{
+        bottomLeftLimit = bottomLeft + new Vector3(1f, 1f, 0f);
+
+        topRightLimit = topRight + new Vector3(-1f, -1f, 0f);
+	}
 }
