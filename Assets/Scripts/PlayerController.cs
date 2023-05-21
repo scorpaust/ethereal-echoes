@@ -31,6 +31,19 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 bottomLeftLimit, topRightLimit;
 
+    private bool canMove = true;
+
+    public bool CanMove
+	{
+        get
+		{
+            return canMove;
+		}
+        set
+		{
+            canMove = value;
+		}
+	}
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +67,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
+        if (canMove)
+		{
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * moveSpeed;
+        }
+        else
+		{
+            rb.velocity = Vector2.zero;
+		}
 
         anim.SetFloat("moveX", rb.velocity.x);
 
@@ -62,9 +82,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
 		{
-            anim.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
+            if (canMove)
+			{
+                anim.SetFloat("lastMoveX", Input.GetAxisRaw("Horizontal"));
 
-            anim.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+                anim.SetFloat("lastMoveY", Input.GetAxisRaw("Vertical"));
+            }
         }
 
         // Keep the player inside the bounds
