@@ -1,0 +1,238 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8148189971185177527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8148189971185177524}
+  - component: {fileID: 8148189971185177525}
+  m_Layer: 0
+  m_Name: 'Player 2 Stat '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8148189971185177524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189971185177527}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8148189972325897813}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8148189971185177525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189971185177527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Arden Swiftblade
+  playerLevel: 1
+  currentXp: 0
+  xpToNextLevel: 
+  baseXp: 850
+  xpIncrease: 65
+  maxLevel: 99
+  currentHp: 0
+  maxHp: 80
+  currentMp: 0
+  maxMp: 60
+  mpLevelBonus: 
+  strength: 10
+  defence: 40
+  weaponPower: 0
+  armorPower: 0
+  equippedWeaponName: 
+  equippedArmorName: 
+  charImage: {fileID: -8090365562718305141, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}
+--- !u!1 &8148189971344686535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8148189971344686533}
+  - component: {fileID: 8148189971344686532}
+  m_Layer: 0
+  m_Name: Player 1 Stat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8148189971344686533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189971344686535}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8148189972325897813}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8148189971344686532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189971344686535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Arden Swiftblade
+  playerLevel: 1
+  currentXp: 0
+  xpToNextLevel: 
+  baseXp: 1000
+  xpIncrease: 65
+  maxLevel: 99
+  currentHp: 0
+  maxHp: 100
+  currentMp: 0
+  maxMp: 30
+  mpLevelBonus: 
+  strength: 15
+  defence: 20
+  weaponPower: 0
+  armorPower: 0
+  equippedWeaponName: 
+  equippedArmorName: 
+  charImage: {fileID: -8090365562718305141, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}
+--- !u!1 &8148189971782904737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8148189971782904750}
+  - component: {fileID: 8148189971782904751}
+  m_Layer: 0
+  m_Name: 'Player 3 Stat '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8148189971782904750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189971782904737}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8148189972325897813}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8148189971782904751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189971782904737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: Arden Swiftblade
+  playerLevel: 1
+  currentXp: 0
+  xpToNextLevel: 
+  baseXp: 850
+  xpIncrease: 65
+  maxLevel: 99
+  currentHp: 0
+  maxHp: 80
+  currentMp: 0
+  maxMp: 60
+  mpLevelBonus: 
+  strength: 10
+  defence: 40
+  weaponPower: 0
+  armorPower: 0
+  equippedWeaponName: 
+  equippedArmorName: 
+  charImage: {fileID: -8090365562718305141, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}
+--- !u!1 &8148189972325897815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8148189972325897813}
+  - component: {fileID: 8148189972325897812}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8148189972325897813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189972325897815}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8148189971344686533}
+  - {fileID: 8148189971185177524}
+  - {fileID: 8148189971782904750}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8148189972325897812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189972325897815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f7d9afb92d7de40850bf80356abcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats:
+  - {fileID: 8148189971344686532}
+  - {fileID: 8148189971185177525}
+  - {fileID: 8148189971782904751}
