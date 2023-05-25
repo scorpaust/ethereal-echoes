@@ -7,14 +7,33 @@ public class CharStats : MonoBehaviour
     [SerializeField]
     private string charName;
 
+    public string CharName
+	{
+        get
+		{
+            return charName;
+		}
+
+        set
+		{
+            charName = value;
+		}
+	}
+
     [SerializeField]
     private int playerLevel = 1;
+
+    public int PlayerLevel { get => playerLevel; set => playerLevel = value; }
 
     [SerializeField]
     private int currentXp;
 
+    public int CurrentXp { get => currentXp; set => currentXp = value; }
+
     [SerializeField]
     private int[] xpToNextLevel;
+
+    public int[] XpToNextLevel { get => xpToNextLevel; set => xpToNextLevel = value; }
 
     [SerializeField]
     private int baseXp = 1000;
@@ -22,22 +41,73 @@ public class CharStats : MonoBehaviour
     [SerializeField]
     private int xpIncrease = 65;
 
+    public int XpIncrease { get => xpIncrease; set => xpIncrease = value; }
+
     [SerializeField]
     private int maxLevel = 99;
 
     [SerializeField]
     private int currentHp;
 
+    public int CurrentHp
+	{
+        get
+		{
+            return currentHp;
+		}
+        set
+		{
+            currentHp = value;
+		}
+	}
+
     [SerializeField]
     private int maxHp = 100;
+
+    public int MaxHp
+	{
+        get
+		{
+            return maxHp;
+		}
+
+        set
+		{
+            maxHp = value;
+		}
+	}
 
     [SerializeField]
     private int currentMp;
 
+    public int CurrentMp
+	{
+        get
+		{
+            return currentMp;
+		}
+        set
+		{
+            currentMp = value;
+		}
+	}
+
     [SerializeField]
     private int maxMp = 100;
 
-    [SerializeField]
+    public int MaxMp
+	{
+        get
+		{
+            return maxMp;
+		}
+        set
+		{
+            maxMp = value;
+		}
+	}
+
+	[SerializeField]
     private int[] mpLevelBonus;
 
     [SerializeField]
@@ -61,16 +131,18 @@ public class CharStats : MonoBehaviour
     [SerializeField]
     private Sprite charImage;
 
+    public Sprite CharImage { get => charImage; set => charImage = value; }
+
     // Start is called before the first frame update
     void Start()
     {
-        xpToNextLevel = new int[maxLevel];
+        XpToNextLevel = new int[maxLevel];
 
-        xpToNextLevel[1] = baseXp;
+        XpToNextLevel[1] = baseXp;
 
-        for (int i = 2; i < xpToNextLevel.Length; i++)
+        for (int i = 2; i < XpToNextLevel.Length; i++)
 		{
-            xpToNextLevel[i] = Mathf.FloorToInt(xpToNextLevel[i - 1] * 1.05f);
+            XpToNextLevel[i] = Mathf.FloorToInt(XpToNextLevel[i - 1] * 1.05f);
         }
     }
 
@@ -85,17 +157,17 @@ public class CharStats : MonoBehaviour
 
     public void AddXp(int amountOfXpToAdd)
 	{
-        currentXp += amountOfXpToAdd;
+        CurrentXp += amountOfXpToAdd;
 
-        if (playerLevel < maxLevel)
+        if (PlayerLevel < maxLevel)
 		{
-            if (currentXp > xpToNextLevel[playerLevel])
+            if (CurrentXp > XpToNextLevel[PlayerLevel])
             {
-                currentXp -= xpToNextLevel[playerLevel];
+                CurrentXp -= XpToNextLevel[PlayerLevel];
 
-                playerLevel++;
+                PlayerLevel++;
 
-                if (playerLevel % 2 == 0)
+                if (PlayerLevel % 2 == 0)
                 {
                     strength++;
                 }
@@ -108,15 +180,15 @@ public class CharStats : MonoBehaviour
 
                 currentHp = maxHp;
 
-                maxMp += maxMp + mpLevelBonus[playerLevel];
+                maxMp += maxMp + mpLevelBonus[PlayerLevel];
 
                 currentMp = maxMp;
             }
         }
         
-        if (playerLevel >= maxLevel)
+        if (PlayerLevel >= maxLevel)
 		{
-            currentXp = 0;
+            CurrentXp = 0;
 		}
 	}
 }

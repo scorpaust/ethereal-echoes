@@ -57,7 +57,7 @@ public class DialogManager : MonoBehaviour
                     {
                         dialogBox.SetActive(false);
 
-                        PlayerController.instance.CanMove = true;
+                        GameManager.instance.DialogActive = false;
                     }
                     else
                     {
@@ -90,7 +90,7 @@ public class DialogManager : MonoBehaviour
 
         nameBox.gameObject.SetActive(isPerson);
 
-        PlayerController.instance.CanMove = false;
+        GameManager.instance.DialogActive = true;
 	}
 
     public void CheckIfName()

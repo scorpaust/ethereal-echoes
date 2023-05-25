@@ -6127,6 +6127,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 484541510}
+    - target: {fileID: 5587199752136489019, guid: c20602a11c794484baeeabdb980f9ec1, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 8148189971210085047}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c20602a11c794484baeeabdb980f9ec1, type: 3}
 --- !u!1001 &8148189971210085046
@@ -6136,6 +6140,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8148189971185177525, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
+      propertyPath: charName
+      value: Sophie
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148189971344686532, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
+      propertyPath: charName
+      value: 'Arden '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148189971344686532, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
+      propertyPath: currentHp
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8148189972325897813, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -6186,3 +6202,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
+--- !u!1 &8148189971210085047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8148189972325897815, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
+  m_PrefabInstance: {fileID: 8148189971210085046}
+  m_PrefabAsset: {fileID: 0}

@@ -9,6 +9,61 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CharStats[] playerStats;
 
+    public CharStats[] PlayerStats 
+    {
+        get
+		{
+            return playerStats;
+		}
+
+        private set { }
+    }
+
+    private bool gameMenuOpen;
+
+    public bool GameMenuOpen
+	{
+        get
+		{
+            return gameMenuOpen;
+		}
+
+        set
+		{
+            gameMenuOpen = value;
+		}
+	}
+
+    private bool dialogActive;
+
+    public bool DialogActive
+	{
+        get
+		{
+            return dialogActive;
+		}
+
+        set
+		{
+            dialogActive = value;
+		}
+	}
+
+    private bool fadingBetweenAreas;
+
+    public bool FadingBetweenAreas
+	{
+        get
+		{
+            return fadingBetweenAreas;
+		}
+
+        set
+		{
+            fadingBetweenAreas = value;
+		}
+	}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +75,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameMenuOpen || dialogActive || fadingBetweenAreas)
+		{
+            PlayerController.instance.CanMove = false;
+		}
+        else
+		{
+            PlayerController.instance.CanMove = true;
+		}
     }
 }
