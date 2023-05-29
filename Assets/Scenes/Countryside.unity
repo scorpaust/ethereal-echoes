@@ -6142,8 +6142,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8148189971185177525, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
       propertyPath: charName
-      value: Sophie
+      value: Woodie
       objectReference: {fileID: 0}
+    - target: {fileID: 8148189971185177525, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
+      propertyPath: charImage
+      value: 
+      objectReference: {fileID: 21300000, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
     - target: {fileID: 8148189971344686532, guid: 813bf277f2f45244a9a2aa558ae45d34, type: 3}
       propertyPath: charName
       value: 'Arden '

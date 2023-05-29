@@ -36,6 +36,15 @@ public class GameMenu : MonoBehaviour
     [SerializeField]
     private GameObject[] charStatsHolder;
 
+    [SerializeField]
+    private GameObject[] statusButtons;
+
+    [SerializeField]
+    private Text statusName, statusHP, statusMP, statusStrength, statusDefence, statusWeaponEquipped, statusWeaponPower, statusArmorEquipped, statusArmorPower, statusExpToNextLevel;
+
+    [SerializeField]
+    private Image statusImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +104,8 @@ public class GameMenu : MonoBehaviour
 
     public void ToggleWindow(int windowNumber)
 	{
+        UpdateMainStats();
+
         for (int i = 0; i < windows.Length; i++)
 		{
             if (i == windowNumber)
@@ -119,4 +130,49 @@ public class GameMenu : MonoBehaviour
 
         GameManager.instance.GameMenuOpen = false;
 	}
+
+    public void OpenStatus()
+	{
+        UpdateMainStats();
+
+        StatusChar(0);
+
+        for (int i = 0; i < statusButtons.Length; i++)
+		{
+            statusButtons[i].SetActive(playerStats[i].gameObject.activeInHierarchy);
+
+            statusButtons[i].GetComponentInChildren<Text>().text = playerStats[i].CharName;
+		}
+	}
+
+    public void StatusChar(int selected)
+	{
+        statusName.text = playerStats[selected].CharName;
+
+        statusHP.text = playerStats[selected].CurrentHp + "/" + playerStats[selected].MaxHp;
+
+        statusMP.text = playerStats[selected].CurrentMp + "/" + playerStats[selected].MaxMp;
+
+        statusStrength.text = playerStats[selected].Strength.ToString();
+
+        statusDefence.text = playerStats[selected].Defence.ToString();
+
+        if (playerStats[selected].EquippedWeaponName != "")
+		{
+            statusWeaponEquipped.text = playerStats[selected].EquippedWeaponName;
+		}
+
+        statusWeaponPower.text = playerStats[selected].WeaponPower.ToString();
+
+        if (playerStats[selected].EquippedArmorName != "")
+        {
+            statusArmorEquipped.text = playerStats[selected].EquippedArmorName;
+        }
+
+        statusArmorPower.text = playerStats[selected].ArmorPower.ToString();
+
+        statusExpToNextLevel.text = playerStats[selected].XpToNextLevel[playerStats[selected].PlayerLevel - playerStats[selected].CurrentXp].ToString();
+
+        statusImage.sprite = playerStats[selected].CharImage;
+    }
 }

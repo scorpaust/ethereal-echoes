@@ -113,20 +113,62 @@ public class CharStats : MonoBehaviour
     [SerializeField]
     private int strength;
 
+    public int Strength
+	{
+        get { return strength; }
+
+        set { strength = value; }
+	}
+
     [SerializeField]
     private int defence;
+
+    public int Defence
+	{
+        get { return defence; }
+
+        set { defence = value;  }
+	}
 
     [SerializeField]
     private int weaponPower;
 
+    public int WeaponPower
+	{
+        get { return weaponPower; }
+
+        set { weaponPower = value; }
+	}
+
     [SerializeField]
     private int armorPower;
+
+    public int ArmorPower
+	{
+        get { return armorPower;}
+
+        set { armorPower = value; }
+	}
 
     [SerializeField]
     private string equippedWeaponName;
 
+    public string EquippedWeaponName
+	{
+        get { return equippedWeaponName; }
+
+        set { equippedWeaponName = value; }
+	}
+
     [SerializeField]
     private string equippedArmorName;
+
+    public string EquippedArmorName
+	{
+        get { return equippedArmorName; }
+
+        set { equippedArmorName = value; }
+	}
 
     [SerializeField]
     private Sprite charImage;
