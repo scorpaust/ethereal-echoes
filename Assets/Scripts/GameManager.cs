@@ -6,6 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public string[] itemsHeld;
+
+    public int[] numberOfItems;
+
+    public Item[] referenceItems;
+
     [SerializeField]
     private CharStats[] playerStats;
 
@@ -84,4 +90,17 @@ public class GameManager : MonoBehaviour
             PlayerController.instance.CanMove = true;
 		}
     }
+
+    public Item GetItemDetails(string itemToGrab)
+	{
+        for (int i = 0; i < referenceItems.Length; i++)
+		{
+            if (referenceItems[i].itemName == itemToGrab)
+			{
+                return referenceItems[i];
+			}
+		}
+
+        return null;
+	}
 }
