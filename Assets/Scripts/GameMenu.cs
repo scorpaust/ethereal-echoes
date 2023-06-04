@@ -45,6 +45,9 @@ public class GameMenu : MonoBehaviour
     [SerializeField]
     private Image statusImage;
 
+    [SerializeField]
+    private ItemButton[] itemButtons;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -175,4 +178,29 @@ public class GameMenu : MonoBehaviour
 
         statusImage.sprite = playerStats[selected].CharImage;
     }
+
+    public void ShowItems()
+	{
+        for (int i = 0; i < itemButtons.Length; i++)
+		{
+            itemButtons[i].ButtonValue = i;
+
+            if (GameManager.instance.itemsHeld[i] != "")
+			{
+                if (!itemButtons[i].ButtonImage.gameObject.activeInHierarchy)
+                    itemButtons[i].ButtonImage.gameObject.SetActive(true);
+
+                if (GameManager.instance.GetItemDetails(GameManager.instance.itemsHeld[i]))
+                    itemButtons[i].ButtonImage.sprite = GameManager.instance.GetItemDetails(GameManager.instance.itemsHeld[i]).itemSprite;
+
+                itemButtons[i].AmountText.text = GameManager.instance.numberOfItems[i].ToString();
+			}
+            else
+			{
+                itemButtons[i].ButtonImage.gameObject.SetActive(false);
+
+                itemButtons[i].AmountText.text = "";
+			}
+		}
+	}
 }
