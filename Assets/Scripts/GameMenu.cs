@@ -48,10 +48,25 @@ public class GameMenu : MonoBehaviour
     [SerializeField]
     private ItemButton[] itemButtons;
 
+    private string selectedItem;
+
+    private Item activeItem;
+
+    [SerializeField]
+    private Text itemName;
+
+    [SerializeField]
+    private Text itemDescription;
+
+    [SerializeField]
+    private Text useButtonText;
+
+    public static GameMenu instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -204,5 +219,23 @@ public class GameMenu : MonoBehaviour
                 itemButtons[i].AmountText.text = "";
 			}
 		}
+	}
+
+    public void SelectItem(Item newItem)
+	{
+        activeItem = newItem;
+
+        if (activeItem.itemType == ItemType.Default)
+		{
+            useButtonText.text = "Use";
+		}
+        else
+		{
+            useButtonText.text = "Equip";
+		}
+
+        itemName.text = activeItem.itemName;
+
+        itemDescription.text = activeItem.description;
 	}
 }
