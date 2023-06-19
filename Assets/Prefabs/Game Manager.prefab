@@ -43,14 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Arden Swiftblade
+  charName: Sophie
   playerLevel: 1
   currentXp: 0
   xpToNextLevel: 
   baseXp: 850
   xpIncrease: 65
   maxLevel: 99
-  currentHp: 0
+  currentHp: 80
   maxHp: 80
   currentMp: 0
   maxMp: 60
@@ -105,14 +105,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Arden Swiftblade
+  charName: 'Arden '
   playerLevel: 1
   currentXp: 0
   xpToNextLevel: 
   baseXp: 1000
   xpIncrease: 65
   maxLevel: 99
-  currentHp: 0
+  currentHp: 1
   maxHp: 100
   currentMp: 0
   maxMp: 30
@@ -167,14 +167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Arden Swiftblade
+  charName: Lucas
   playerLevel: 1
   currentXp: 0
   xpToNextLevel: 
   baseXp: 850
   xpIncrease: 65
   maxLevel: 99
-  currentHp: 0
+  currentHp: 80
   maxHp: 80
   currentMp: 0
   maxMp: 60
