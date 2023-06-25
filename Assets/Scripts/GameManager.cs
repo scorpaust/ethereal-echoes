@@ -12,6 +12,21 @@ public class GameManager : MonoBehaviour
 
     public Item[] referenceItems;
 
+    private int currentGold;
+
+    public int CurrentGold
+	{
+        get
+		{
+            return currentGold;
+		}
+
+        set
+		{
+            currentGold = value;
+		}
+	}
+
     [SerializeField]
     private CharStats[] playerStats;
 
