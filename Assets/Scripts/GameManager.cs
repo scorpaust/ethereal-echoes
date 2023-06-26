@@ -70,6 +70,21 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+    private bool shopActive;
+
+    public bool ShopActive
+	{
+        get
+		{
+            return shopActive;
+		}
+
+        set
+		{
+            shopActive = value;
+		}
+	}
+
     private bool fadingBetweenAreas;
 
     public bool FadingBetweenAreas
@@ -98,7 +113,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameMenuOpen || dialogActive || fadingBetweenAreas)
+        if (gameMenuOpen || dialogActive || fadingBetweenAreas || shopActive)
 		{
             PlayerController.instance.CanMove = false;
 		}
