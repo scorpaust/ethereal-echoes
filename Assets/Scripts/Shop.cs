@@ -10,6 +10,15 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private GameObject shopMenu;
 
+    public GameObject ShopMenu 
+    {
+        get {
+            return shopMenu;
+        }
+
+        private set {}
+    }
+
     [SerializeField]
     private GameObject buyMenu;
 
@@ -18,6 +27,20 @@ public class Shop : MonoBehaviour
 
     [SerializeField]
     private Text goldText;
+
+    [SerializeField]
+    private string[] itemsForSale;
+
+    public string[] ItemsForSale 
+    {
+        get {
+            return itemsForSale;
+        }
+
+        set {
+            itemsForSale = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
