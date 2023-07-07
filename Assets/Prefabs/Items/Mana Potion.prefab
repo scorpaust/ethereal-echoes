@@ -98,9 +98,9 @@ MonoBehaviour:
   itemType: 0
   itemName: Mana Potion
   description: Restores 50 MP
-  value: 5
+  itemValue: 5
   itemSprite: {fileID: 21300004, guid: 0bc4ed27aef38a44bb72e80f9beb5326, type: 3}
   amountToChange: 50
   itemAffect: 1
   weaponStrength: 0
-  armourStrength: 0
+  armorStrength: 0

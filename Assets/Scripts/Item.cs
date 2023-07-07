@@ -6,7 +6,7 @@ public enum ItemType
 {
     Default,
     Weapon,
-    Armour
+    Armor
 }
 
 public enum ItemAffect
@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
 
     public string description;
 
-    public int value;
+    public int itemValue;
 
     public Sprite itemSprite;
 
@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
     [Header("Weapon/Armour Details")]
     public int weaponStrength;
 
-    public int armourStrength;
+    public int armorStrength;
 
     // Start is called before the first frame update
     void Start()
@@ -90,7 +90,7 @@ public class Item : MonoBehaviour
             selectedChar.WeaponPower = weaponStrength;
 		}
 
-        if (itemType == ItemType.Armour)
+        if (itemType == ItemType.Armor)
 		{
             if (selectedChar.EquippedArmorName != "")
             {
@@ -99,7 +99,7 @@ public class Item : MonoBehaviour
 
             selectedChar.EquippedArmorName = itemName;
 
-            selectedChar.ArmorPower = armourStrength;
+            selectedChar.ArmorPower = armorStrength;
         }
 
         GameManager.instance.RemoveItem(itemName);

@@ -11270,9 +11270,19 @@ MonoBehaviour:
   canOpen: 0
   itemsForSale:
   - HP Potion
-  - Iron Armour
-  - Leather Armour
-  - Iron Sword
+  - Iron Armor
+  - Leather Armor
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!1 &1964849943
 GameObject:
   m_ObjectHideFlags: 0

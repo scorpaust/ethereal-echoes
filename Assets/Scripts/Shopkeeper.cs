@@ -8,7 +8,7 @@ public class Shopkeeper : MonoBehaviour
     private bool canOpen;
 
     [SerializeField]
-    private string[] itemsForSale;
+    private string[] itemsForSale = new string[14];
     // Start is called before the first frame update
     void Start()
     {

@@ -98,9 +98,9 @@ MonoBehaviour:
   itemType: 1
   itemName: Wooden Sword
   description: Not very accurate
-  value: 25
+  itemValue: 15
   itemSprite: {fileID: 21300074, guid: 0bc4ed27aef38a44bb72e80f9beb5326, type: 3}
   amountToChange: 50
   itemAffect: 2
   weaponStrength: 5
-  armourStrength: 0
+  armorStrength: 0

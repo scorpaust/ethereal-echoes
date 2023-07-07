@@ -11313,13 +11313,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3711316665511723845}
-  m_RootOrder: 1
+  m_Father: {fileID: 1610939227055994337}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 46}
-  m_SizeDelta: {x: 250, y: 59.683502}
+  m_AnchoredPosition: {x: 351.33563, y: -9.83255}
+  m_SizeDelta: {x: 702.6713, y: 59.6835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7955876425191306980
 CanvasRenderer:
@@ -11911,8 +11911,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: 1.8417511}
-  m_SizeDelta: {x: -622, y: -56.316498}
+  m_AnchoredPosition: {x: 100.5, y: 1.8417511}
+  m_SizeDelta: {x: -201, y: -56.3165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8554835775612936046
 CanvasRenderer:
@@ -11949,7 +11949,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 89
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -12277,6 +12277,44 @@ MonoBehaviour:
   buyMenu: {fileID: 568826621227067832}
   sellMenu: {fileID: 5701713578585978204}
   goldText: {fileID: 5963579236418859489}
+  itemsForSale: []
+  buyItemButtons:
+  - {fileID: 663601734315305714}
+  - {fileID: 6844986915449764269}
+  - {fileID: 5552465039351332578}
+  - {fileID: 4438139815304083271}
+  - {fileID: 5146288243142583880}
+  - {fileID: 664975684304521649}
+  - {fileID: 105154240967674235}
+  - {fileID: 9132831567125723680}
+  - {fileID: 6884065814097174624}
+  - {fileID: 6938007701418655691}
+  - {fileID: 5130247454621348084}
+  - {fileID: 8452609011536359339}
+  - {fileID: 579095242839423870}
+  - {fileID: 3986387532086866348}
+  sellItemButtons:
+  - {fileID: 5640447413624897588}
+  - {fileID: 1189192198821595951}
+  - {fileID: 7038137404162565920}
+  - {fileID: 2734079208312111323}
+  - {fileID: 7028199097420896817}
+  - {fileID: 6734122071055110146}
+  - {fileID: 4868972479808813416}
+  - {fileID: 1460867137215340564}
+  - {fileID: 150526931845616697}
+  - {fileID: 1115194362484353228}
+  - {fileID: 3208448171410261341}
+  - {fileID: 4833250076275076086}
+  - {fileID: 8269887530350145268}
+  - {fileID: 1149449239464290737}
+  selectedItem: {fileID: 0}
+  buyItemName: {fileID: 8025072807462890387}
+  buyItemDescription: {fileID: 737988339207373255}
+  buyItemValue: {fileID: 5495697672890720051}
+  sellItemName: {fileID: 9093207324280649976}
+  sellItemDescription: {fileID: 8813114291088004324}
+  sellItemValue: {fileID: 5274674894727718317}
 --- !u!1 &3917345822768881425
 GameObject:
   m_ObjectHideFlags: 0
@@ -13037,7 +13075,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8151095470191606561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4864130176857741312}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4346470746130201350
 GameObject:
   m_ObjectHideFlags: 0
@@ -13536,8 +13586,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -110, y: 1.8417511}
-  m_SizeDelta: {x: -622, y: -56.316498}
+  m_AnchoredPosition: {x: 100.5, y: 2}
+  m_SizeDelta: {x: -201, y: -56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &104699004477435697
 CanvasRenderer:
@@ -13574,13 +13624,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 89
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Value:'
+  m_Text: Value
 --- !u!1 &4525268457427248502
 GameObject:
   m_ObjectHideFlags: 0
@@ -13763,14 +13813,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8591920069827787375}
   m_Father: {fileID: 3711316665511723845}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -33}
-  m_SizeDelta: {x: 250, y: 59.683502}
+  m_AnchoredPosition: {x: 386.33563, y: -33}
+  m_SizeDelta: {x: 702.6712, y: 59.6835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1491479206696115151
 CanvasRenderer:
@@ -17564,7 +17615,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8857876240177781285}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4864130176857741312}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: SellItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6030588998575953144
 GameObject:
   m_ObjectHideFlags: 0
@@ -21988,7 +22051,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1610939227055994337}
-  - {fileID: 8591920069827787375}
   m_Father: {fileID: 6963584315939687954}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
