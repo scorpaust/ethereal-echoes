@@ -196,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8148189972325897813}
   - component: {fileID: 8148189972325897812}
+  - component: {fileID: 5455536037440690360}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -259,3 +260,22 @@ MonoBehaviour:
   - {fileID: 8148189971344686532}
   - {fileID: 8148189971185177525}
   - {fileID: 8148189971782904751}
+--- !u!114 &5455536037440690360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148189972325897815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e30a6c727fb9142bf292705b5f44fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questMarkerNames:
+  - 
+  - Potion Secret
+  - Meet Town Girls
+  - Fight the demon
+  - Rescue Town Girl's Father
+  questMarkersComplete: 

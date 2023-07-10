@@ -1658,6 +1658,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &784263171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784263173}
+  - component: {fileID: 784263172}
+  m_Layer: 0
+  m_Name: Quest Object Activator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &784263172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784263171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c890e4045a314849a40b22215314cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToActivate: {fileID: 7712654292477865845}
+  questToCheck: Potion Secret
+  activeIfComplete: 1
+--- !u!4 &784263173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784263171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7712654292477865846}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977725260
 GameObject:
   m_ObjectHideFlags: 0
@@ -5810,7 +5857,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4192205971186464935, guid: 92a58017c28753d40bf115fc59021273, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4192205971186464935, guid: 92a58017c28753d40bf115fc59021273, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5905,6 +5952,9 @@ MonoBehaviour:
   lines:
   - Morita Town >>
   isPerson: 0
+  shouldActivateQuest: 1
+  questToMark: Potion Secret
+  markComplete: 1
 --- !u!61 &1757908173
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5974,7 +6024,7 @@ Transform:
   - {fileID: 977725261}
   - {fileID: 672538027}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1928565810
 PrefabInstance:
@@ -5983,9 +6033,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151754227, guid: d629d638cd18e574b8304e67b698720f, type: 3}
+      propertyPath: transitionName
+      value: Countryside-1
+      objectReference: {fileID: 0}
     - target: {fileID: 151754228, guid: d629d638cd18e574b8304e67b698720f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.18
+      value: -1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 151754228, guid: d629d638cd18e574b8304e67b698720f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1907097177684628124, guid: d629d638cd18e574b8304e67b698720f, type: 3}
       propertyPath: m_Name
@@ -6001,11 +6059,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907097177684628126, guid: d629d638cd18e574b8304e67b698720f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1907097177684628126, guid: d629d638cd18e574b8304e67b698720f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.83
+      value: 13.61
       objectReference: {fileID: 0}
     - target: {fileID: 1907097177684628126, guid: d629d638cd18e574b8304e67b698720f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6043,6 +6101,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1907097177684628127, guid: d629d638cd18e574b8304e67b698720f, type: 3}
+      propertyPath: areaTo
+      value: MoritaTown-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907097177684628127, guid: d629d638cd18e574b8304e67b698720f, type: 3}
+      propertyPath: areaFrom
+      value: Countryside-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907097177684628127, guid: d629d638cd18e574b8304e67b698720f, type: 3}
+      propertyPath: entrance
+      value: 
+      objectReference: {fileID: 1928565811}
     - target: {fileID: 1907097177684628127, guid: d629d638cd18e574b8304e67b698720f, type: 3}
       propertyPath: areaToLoad
       value: MoritaTown
@@ -6138,11 +6208,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 784263173}
     m_Modifications:
     - target: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6162,15 +6232,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6188,5 +6258,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: HP Potion
       objectReference: {fileID: 0}
+    - target: {fileID: 8984198633547691362, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
+--- !u!1 &7712654292477865845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8984198633547691362, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
+  m_PrefabInstance: {fileID: 7712654292477865844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7712654292477865846 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8984198633547691357, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
+  m_PrefabInstance: {fileID: 7712654292477865844}
+  m_PrefabAsset: {fileID: 0}

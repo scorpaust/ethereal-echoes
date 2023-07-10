@@ -5,29 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class AreaExit : MonoBehaviour
 {
-    [SerializeField]
-    private string areaToLoad;
-
-    [SerializeField]
-    private string areaTransitionName;
-
-    [SerializeField]
-    private AreaEntrance theEntrance;
-
+    public string areaToLoad;
+    public string areaTo;
+    public string areaFrom;
+ 
+    public AreaEntrance entrance;
+ 
     private float waitToLoad = 1f;
 
     private bool shouldLoadAfterFade;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (theEntrance != null)
-            theEntrance.TransitionName = areaTransitionName;
+    void Start() {
+        entrance.TransitionName = areaFrom;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void Update() {
         if (shouldLoadAfterFade)
 		{
             waitToLoad -= Time.deltaTime;
@@ -40,18 +32,18 @@ public class AreaExit : MonoBehaviour
 			}
 		}
     }
-
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.CompareTag("Player"))
-		{
+ 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
             shouldLoadAfterFade = true;
 
             GameManager.instance.FadingBetweenAreas = true;
 
             UIFade.instance.FadeToBlack();
 
-            PlayerController.instance.AreaTransitionName = areaTransitionName;
-		}
-	}
+            PlayerController.instance.AreaTransitionName = areaTo;
+        }
+    }
 }

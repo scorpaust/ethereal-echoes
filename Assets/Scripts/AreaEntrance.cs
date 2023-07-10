@@ -24,9 +24,9 @@ public class AreaEntrance : MonoBehaviour
     void Start()
     {
         if (PlayerController.instance != null && transitionName == PlayerController.instance.AreaTransitionName)
-		{
+        {
             PlayerController.instance.transform.position = transform.position;
-		}
+        }        
 
         UIFade.instance.FadeFromBlack();
 

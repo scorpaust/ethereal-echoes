@@ -7,26 +7,39 @@ public class EssentialsLoader : MonoBehaviour
     [SerializeField]
     private GameObject UIScreen;
 
-    [SerializeField]
+    /*[SerializeField]
     private GameObject player;
+
+    public GameObject Player
+    {
+        get {
+            return player;
+        }
+
+        private set {}
+    }*/
 
     [SerializeField]
     private GameObject gameManager;
 
+    public static EssentialsLoader instance;
+
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+
         if (UIFade.instance == null)
 		{
             UIFade.instance = Instantiate(UIScreen).GetComponent<UIFade>();
 		}
-
+        /*
         if (PlayerController.instance == null)
 		{
             PlayerController clone = Instantiate(player).GetComponent<PlayerController>();
 
             PlayerController.instance = clone;
-		}
+		}*/
 
         if (GameManager.instance == null)
 		{

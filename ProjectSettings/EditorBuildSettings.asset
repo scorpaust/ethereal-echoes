@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MoritaTown.unity
     guid: dfc6bb438ed30614497b4e770477f297
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: dc70503df5b667e4da08503a777cb580
   m_configObjects: {}
