@@ -14,12 +14,14 @@ public class CameraController : MonoBehaviour
 
     private float halfHeight, halfWidth;
 
+    [SerializeField]
+    private int musicToPlay;
+
+    private bool musicStarted;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerController.instance != null)
-            target = FindObjectOfType<PlayerController>().transform;
-
         halfHeight = Camera.main.orthographicSize;
 
         halfWidth = halfHeight * Camera.main.aspect;
@@ -32,13 +34,33 @@ public class CameraController : MonoBehaviour
             PlayerController.instance.SetBounds(theMap.localBounds.min, theMap.localBounds.max);
     }
 
-    // LateUpdate is called once per frame after update
-    void LateUpdate()
+	private void Update()
+	{
+		if (PlayerController.instance != null)
+        {
+			target = FindObjectOfType<PlayerController>().transform;
+		}
+		else
+        {
+            return;
+        }
+
+	}
+
+	// LateUpdate is called once per frame after update
+	void LateUpdate()
     {
         if (target != null)
             transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
 
         // Keep the camera inside the bounds
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x, topRightLimit.x), Mathf.Clamp(transform.position.y, bottomLeftLimit.y, topRightLimit.y), transform.position.z);
+    
+        if (!musicStarted)
+        {
+            musicStarted = true;
+
+            AudioManager.instance.PlayBgm(musicToPlay);
+        }
     }
 }

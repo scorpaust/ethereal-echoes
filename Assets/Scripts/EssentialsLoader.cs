@@ -22,6 +22,9 @@ public class EssentialsLoader : MonoBehaviour
     [SerializeField]
     private GameObject gameManager;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     public static EssentialsLoader instance;
 
     // Start is called before the first frame update
@@ -40,6 +43,11 @@ public class EssentialsLoader : MonoBehaviour
 
             PlayerController.instance = clone;
 		}*/
+
+        if (AudioManager.instance == null)
+        {
+            Instantiate(audioManager);
+        }
 
         if (GameManager.instance == null)
 		{
