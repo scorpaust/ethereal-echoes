@@ -86,7 +86,22 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    private bool fadingBetweenAreas;
+    private bool battleActive;
+
+	public bool BattleActive
+	{
+		get
+		{
+			return battleActive;
+		}
+
+		set
+		{
+			battleActive = value;
+		}
+	}
+
+	private bool fadingBetweenAreas;
 
     public bool FadingBetweenAreas
 	{
@@ -116,7 +131,7 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerController.instance == null) return;
 
-        if (gameMenuOpen || dialogActive || fadingBetweenAreas || shopActive)
+        if (gameMenuOpen || dialogActive || fadingBetweenAreas || shopActive || battleActive)
 		{
             PlayerController.instance.CanMove = false;
 		}
