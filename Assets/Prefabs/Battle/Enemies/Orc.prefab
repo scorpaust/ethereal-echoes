@@ -96,15 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  movesAvailable: []
+  movesAvailable:
+  - Fire
+  - Bio
   hasDied: 0
   charName: Orc
+  playerLevel: 2
   currentXp: 350
   currentHP: 400
   maxHp: 400
   currentMp: 10
   maxMp: 10
-  strength: 40
-  defence: 30
-  weaponPower: 20
-  armorPower: 25
+  strength: 5
+  defence: 3
+  weaponPower: 3
+  armorPower: 2

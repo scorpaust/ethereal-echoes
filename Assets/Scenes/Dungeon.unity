@@ -448,7 +448,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101.99997, y: -43.999977}
-  m_SizeDelta: {x: 160, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &246713528
 MonoBehaviour:
@@ -639,7 +639,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101.99997, y: -43.999977}
-  m_SizeDelta: {x: 160, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418798067
 MonoBehaviour:
@@ -1100,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &659925464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9882,6 +9882,39 @@ MonoBehaviour:
   - {fileID: 1754517935722568208, guid: 5373fd3cc70812c43a2ee66506adf6b0, type: 3}
   - {fileID: 8662942876002190738, guid: 2591a27e7f6ff0440a258448af090c2e, type: 3}
   - {fileID: 1245315866547300146, guid: 2c4701f04fe77674e9f2eda068191374, type: 3}
+  uiButtonsHolder: {fileID: 668945472}
+  movesList:
+  - moveName: Slash
+    movePower: 5
+    moveCost: 0
+    theEffect: {fileID: 6945814795955835240, guid: 560d1105fd49b2b42a9c35d3770e3ae6, type: 3}
+  - moveName: Fire
+    movePower: 50
+    moveCost: 5
+    theEffect: {fileID: 1382387452211522964, guid: b8b57d4687911f548a1d5ca702c8742c, type: 3}
+  - moveName: Ice
+    movePower: 65
+    moveCost: 5
+    theEffect: {fileID: 156183933348438031, guid: 48c307378c5aefe4a9146e1d3ecb796c, type: 3}
+  - moveName: Bio
+    movePower: 85
+    moveCost: 15
+    theEffect: {fileID: 4894895867038093199, guid: 0e2f34e3b1650d145903d015925b6373, type: 3}
+  enemyAttackEffect: {fileID: 1038274325115329144, guid: 949fc88848fd26f4ab9ed3c7164179d3, type: 3}
+  damageNumber: {fileID: 2623638235967634928, guid: 6ae6f585a547d1b46b13ccae024ebe43, type: 3}
+  playerNames:
+  - {fileID: 919090620}
+  - {fileID: 1030700398}
+  - {fileID: 592122767}
+  playerHps:
+  - {fileID: 418798067}
+  - {fileID: 1451124083}
+  - {fileID: 2039399083}
+  playerMps:
+  - {fileID: 2120876935}
+  - {fileID: 246713528}
+  - {fileID: 1542461701}
+  activeBattleChars: []
 --- !u!1 &1030700396
 GameObject:
   m_ObjectHideFlags: 0
@@ -10568,6 +10601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Custom Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4578236778075100133, guid: 67be7b16e5adb24429445547e26614b6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4578236778075100134, guid: 67be7b16e5adb24429445547e26614b6, type: 3}
       propertyPath: theMap
       value: 
@@ -10643,7 +10680,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101.99997, y: -43.999977}
-  m_SizeDelta: {x: 160, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451124083
 MonoBehaviour:
@@ -10892,7 +10929,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101.99997, y: -43.999977}
-  m_SizeDelta: {x: 160, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1542461701
 MonoBehaviour:
@@ -11468,7 +11505,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101.99997, y: -43.999977}
-  m_SizeDelta: {x: 160, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039399083
 MonoBehaviour:
@@ -11547,7 +11584,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 101.99997, y: -43.999977}
-  m_SizeDelta: {x: 160, y: 80}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120876935
 MonoBehaviour:

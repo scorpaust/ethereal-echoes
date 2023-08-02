@@ -96,15 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  movesAvailable: []
+  movesAvailable:
+  - Slash
   hasDied: 0
   charName: Skeleton
+  playerLevel: 1
   currentXp: 300
   currentHP: 200
   maxHp: 200
   currentMp: 10
   maxMp: 10
-  strength: 60
-  defence: 30
-  weaponPower: 25
-  armorPower: 15
+  strength: 3
+  defence: 2
+  weaponPower: 1
+  armorPower: 0

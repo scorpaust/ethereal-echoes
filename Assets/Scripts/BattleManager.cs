@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -21,7 +22,34 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private BattleChar[] enemyPrefabs;
 
+    [SerializeField]
+    private GameObject uiButtonsHolder;
+
+    [SerializeField]
+    private BattleMove[] movesList;
+
+    [SerializeField]
+    private GameObject enemyAttackEffect;
+
+    [SerializeField]
+    private DamageNumber damageNumber;
+
+    [SerializeField]
+    private Text[] playerNames;
+
+    [SerializeField]
+    private Text[] playerHps;
+
+    [SerializeField]
+    private Text[] playerMps;
+
     private bool battleActive;
+
+    public List<BattleChar> activeBattleChars = new List<BattleChar>();
+
+    private int currentTurn;
+
+    private bool turnWaiting;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +64,24 @@ public class BattleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            BattleStart(new string[] { "Eyeball", "Skeleton", "Orc" });
+            BattleStart(new string[] { "Skeleton", "Orc" });
+        }
+
+        if (battleActive)
+        {
+            if (turnWaiting)
+            {
+                if (activeBattleChars[currentTurn].IsPlayer)
+                {
+                    uiButtonsHolder.SetActive(true);
+                }
+                else
+                {
+                    uiButtonsHolder.SetActive(false);
+
+                    StartCoroutine(EnemyMoveCo());
+                }
+            }
         }
     }
 
@@ -53,6 +98,261 @@ public class BattleManager : MonoBehaviour
             battleScene.SetActive(true);
 
             AudioManager.instance.PlayBgm(0);
+
+            InitPlayers();
+
+            InitEnemies(enemiesToSpawn);
+
+			turnWaiting = true;
+
+            currentTurn = Random.Range(0, activeBattleChars.Count);
+		}
+    }
+
+    private void InitPlayers()
+    {
+        for (int i = 0; i < playerPositions.Length; i++)
+        {
+            if (GameManager.instance.PlayerStats[i].gameObject.activeInHierarchy)
+            {
+                for (int j = 0; j < playerPrefabs.Length; j++)
+                {
+                    if (playerPrefabs[j].CharName.Trim() == GameManager.instance.PlayerStats[i].CharName.Trim())
+                    {
+                        BattleChar newPlayer = Instantiate(playerPrefabs[j], playerPositions[i].position, playerPositions[i].rotation);
+
+                        newPlayer.transform.parent = playerPositions[i];
+
+                        activeBattleChars.Add(newPlayer);
+
+                        CharStats thePlayer = GameManager.instance.PlayerStats[i];
+
+                        activeBattleChars[i].CurrentHP = thePlayer.CurrentHp;
+
+                        activeBattleChars[i].MaxHp = thePlayer.MaxHp;
+
+                        activeBattleChars[i].CurrentMp = thePlayer.CurrentMp;
+
+                        activeBattleChars[i].MaxMp = thePlayer.MaxMp;
+
+                        activeBattleChars[i].Strength = thePlayer.Strength;
+
+                        activeBattleChars[i].Defence = thePlayer.Defence;
+
+                        activeBattleChars[i].WeaponPower = thePlayer.WeaponPower;
+
+                        activeBattleChars[i].ArmorPower = thePlayer.ArmorPower;
+
+                        activeBattleChars[i].PlayerLevel = thePlayer.PlayerLevel;
+                    }
+                }
+            }
+
+        }
+
+        turnWaiting = true;
+
+        currentTurn = 0;
+
+        UpdateUIStats();
+    }
+
+    private void InitEnemies(string[] enemiesToSpawn)
+    {
+        for (int i = 0; i < enemiesToSpawn.Length; i++)
+        {
+            if (enemiesToSpawn[i] != "")
+            {
+                for (int j = 0; j < enemyPrefabs.Length; j++)
+                {
+                    if (enemyPrefabs[j].CharName == enemiesToSpawn[i])
+                    {
+                        BattleChar newEnemy = Instantiate(enemyPrefabs[j], enemyPositions[i].position, enemyPositions[i].rotation);
+
+                        newEnemy.transform.parent = enemyPositions[i];
+
+                        activeBattleChars.Add(newEnemy);
+					}
+                }
+            }
+        }
+    }
+
+    public void NextTurn()
+    {
+        currentTurn++;
+
+        if (currentTurn >= activeBattleChars.Count)
+        {
+            currentTurn = 0;
+        }
+
+        turnWaiting = true;
+
+        UpdateBattle();
+
+        UpdateUIStats();
+    }
+
+    public void UpdateBattle()
+    {
+        bool allEnemiesDead = true;
+
+        bool allPlayersDead = true;
+
+        for (int i = 0; i < activeBattleChars.Count; i++)
+        {
+            if (activeBattleChars[i].CurrentHP < 0)
+            {
+                activeBattleChars[i].CurrentHP = 0;
+            }
+
+            if (activeBattleChars[i].CurrentHP == 0)
+            {
+                // Handle dead battler
+            }
+            else
+            {
+                if (activeBattleChars[i].IsPlayer)
+                {
+                    allPlayersDead = false;
+                }
+                else
+                {
+                    allEnemiesDead = false;
+                }
+            }
+        }
+
+        if (allEnemiesDead || allPlayersDead)
+        {
+            if (allEnemiesDead)
+            {
+                // End battle in victory
+            }
+            else
+            {
+                // End battle in failure
+            }
+
+            battleScene.SetActive(false);
+
+            GameManager.instance.BattleActive = false;
+
+            battleActive = false;
+        }
+        else
+        {
+            while (activeBattleChars[currentTurn].CurrentHP == 0)
+            {
+                currentTurn++;
+
+                if (currentTurn >= activeBattleChars.Count)
+                {
+                    currentTurn = 0;
+                }
+            }
+        }
+    }
+
+    private IEnumerator EnemyMoveCo()
+    {
+        turnWaiting = false;
+
+        yield return new WaitForSeconds(1f);
+
+        EnemyAttack();
+
+		yield return new WaitForSeconds(1f);
+
+        NextTurn();
+	}
+
+    public void EnemyAttack()
+    {
+        List<int> players = new List<int>();
+
+        for (int i = 0; i < activeBattleChars.Count; i++)
+        {
+            if (activeBattleChars[i].IsPlayer && activeBattleChars[i].CurrentHP > 0)
+            {
+                players.Add(i);
+            }
+        }
+
+        int selectedTarget = players[Random.Range(0, players.Count)];
+
+        int selectedAttack = Random.Range(0, activeBattleChars[currentTurn].MovesAvailable.Length);
+
+        int movePower = 0;
+
+        for (int i = 0; i < movesList.Length; i++)
+        {
+            if (movesList[i].MoveName == activeBattleChars[currentTurn].MovesAvailable[selectedAttack]) 
+            {
+                Instantiate(movesList[i].TheEffect, activeBattleChars[selectedTarget].transform.position, activeBattleChars[selectedTarget].transform.rotation);
+
+                movePower = movesList[i].MovePower;
+            }
+        }
+
+        Instantiate(enemyAttackEffect, activeBattleChars[currentTurn].transform.position, activeBattleChars[currentTurn].transform.rotation);
+
+        DealDamage(selectedTarget, movePower);
+    }
+
+    public void DealDamage(int target, int movePower)
+    {
+		// Base damage calculation
+		int baseDamage = (activeBattleChars[currentTurn].Strength + activeBattleChars[currentTurn].WeaponPower) * activeBattleChars[currentTurn].PlayerLevel;
+
+		// Defense mitigation calculation
+		int defenseMitigation = (activeBattleChars[target].Defence + activeBattleChars[target].ArmorPower);
+
+		// Randomness factor (between 0.85 and 1.15 here)
+		float randomFactor = UnityEngine.Random.Range(0.85f, 1.15f);
+		
+        // Damage calculation after applying defense mitigation
+		// We use Mathf.Max to make sure that the damage is at least 1, 
+		// and doesn't go negative due to high defense.
+		int finalDamage = Mathf.RoundToInt(Mathf.Max(1, baseDamage - defenseMitigation) * randomFactor);
+
+        activeBattleChars[target].CurrentHP -= finalDamage;
+
+        damageNumber.SetDamage(finalDamage);
+
+		Instantiate(damageNumber, activeBattleChars[target].transform.position, activeBattleChars[target].transform.rotation);
+
+        UpdateUIStats();
+    }
+
+    public void UpdateUIStats()
+    {
+        for (int i = 0; i < playerNames.Length; i++)
+        {
+            if (activeBattleChars.Count > i)
+            {
+				if (activeBattleChars[i].IsPlayer)
+                {
+                    playerNames[i].gameObject.SetActive(true);
+
+                    BattleChar playerData = activeBattleChars[i];
+
+                    playerNames[i].text = playerData.CharName;
+
+                    playerHps[i].text = playerData.CurrentHP + "/" + playerData.MaxHp;
+
+                    playerMps[i].text = playerData.CurrentMp + "/" + playerData.MaxMp;
+                }
+                else
+                {
+					playerNames[i].gameObject.SetActive(false);
+				}
+			} 
+            else
+            {
+				playerNames[i].gameObject.SetActive(false);
+			}
         }
     }
 }

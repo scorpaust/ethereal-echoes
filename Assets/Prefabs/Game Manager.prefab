@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8148189971185177524
 Transform:
   m_ObjectHideFlags: 0
@@ -105,22 +105,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: 'Arden '
+  charName: Arden
   playerLevel: 1
   currentXp: 0
   xpToNextLevel: 
   baseXp: 1000
   xpIncrease: 65
   maxLevel: 99
-  currentHp: 1
+  currentHp: 100
   maxHp: 100
   currentMp: 0
   maxMp: 30
   mpLevelBonus: 
-  strength: 15
-  defence: 20
-  weaponPower: 0
-  armorPower: 0
+  strength: 4
+  defence: 3
+  weaponPower: 2
+  armorPower: 2
   equippedWeaponName: 
   equippedArmorName: 
   charImage: {fileID: -8090365562718305141, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c09441000419e247b9f6d4169ce538b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Lucas
+  charName: Woody
   playerLevel: 1
   currentXp: 0
   xpToNextLevel: 
@@ -185,7 +185,7 @@ MonoBehaviour:
   armorPower: 0
   equippedWeaponName: 
   equippedArmorName: 
-  charImage: {fileID: -8090365562718305141, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}
+  charImage: {fileID: 21300000, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
 --- !u!1 &8148189972325897815
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ MonoBehaviour:
   isPlayer: 0
   movesAvailable: []
   hasDied: 0
-  charName: 
+  charName: Woody
   currentXp: 1500
   currentHP: 250
   maxHp: 250
