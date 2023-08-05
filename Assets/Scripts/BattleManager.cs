@@ -43,11 +43,38 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private Text[] playerMps;
 
+    [SerializeField]
+    private GameObject targetMenu;
+
+    public GameObject MagicMenu;
+
+    [SerializeField]
+    private BattleTargetButton[] targetButtons;
+
+    [SerializeField]
+    private BattleMagicSelect[] magicButtons;
+
+    [SerializeField]
+    private int chanceToFlee;
+
     private bool battleActive;
 
     public List<BattleChar> activeBattleChars = new List<BattleChar>();
 
-    private int currentTurn;
+    public int CurrentTurn { get; private set; }
+
+    [SerializeField]
+    private BattleNotification battleNotice;
+    
+    public BattleNotification BattleNotice
+    {
+        get
+        {
+            return battleNotice;
+        }
+
+        private set { }
+    }
 
     private bool turnWaiting;
 
@@ -71,7 +98,7 @@ public class BattleManager : MonoBehaviour
         {
             if (turnWaiting)
             {
-                if (activeBattleChars[currentTurn].IsPlayer)
+                if (activeBattleChars[CurrentTurn].IsPlayer)
                 {
                     uiButtonsHolder.SetActive(true);
                 }
@@ -105,7 +132,7 @@ public class BattleManager : MonoBehaviour
 
 			turnWaiting = true;
 
-            currentTurn = Random.Range(0, activeBattleChars.Count);
+            CurrentTurn = Random.Range(0, activeBattleChars.Count);
 		}
     }
 
@@ -152,7 +179,7 @@ public class BattleManager : MonoBehaviour
 
         turnWaiting = true;
 
-        currentTurn = 0;
+        CurrentTurn = 0;
 
         UpdateUIStats();
     }
@@ -180,11 +207,11 @@ public class BattleManager : MonoBehaviour
 
     public void NextTurn()
     {
-        currentTurn++;
+        CurrentTurn++;
 
-        if (currentTurn >= activeBattleChars.Count)
+        if (CurrentTurn >= activeBattleChars.Count)
         {
-            currentTurn = 0;
+            CurrentTurn = 0;
         }
 
         turnWaiting = true;
@@ -243,13 +270,13 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            while (activeBattleChars[currentTurn].CurrentHP == 0)
+            while (activeBattleChars[CurrentTurn].CurrentHP == 0)
             {
-                currentTurn++;
+                CurrentTurn++;
 
-                if (currentTurn >= activeBattleChars.Count)
+                if (CurrentTurn >= activeBattleChars.Count)
                 {
-                    currentTurn = 0;
+                    CurrentTurn = 0;
                 }
             }
         }
@@ -282,13 +309,13 @@ public class BattleManager : MonoBehaviour
 
         int selectedTarget = players[Random.Range(0, players.Count)];
 
-        int selectedAttack = Random.Range(0, activeBattleChars[currentTurn].MovesAvailable.Length);
+        int selectedAttack = Random.Range(0, activeBattleChars[CurrentTurn].MovesAvailable.Length);
 
         int movePower = 0;
 
         for (int i = 0; i < movesList.Length; i++)
         {
-            if (movesList[i].MoveName == activeBattleChars[currentTurn].MovesAvailable[selectedAttack]) 
+            if (movesList[i].MoveName == activeBattleChars[CurrentTurn].MovesAvailable[selectedAttack]) 
             {
                 Instantiate(movesList[i].TheEffect, activeBattleChars[selectedTarget].transform.position, activeBattleChars[selectedTarget].transform.rotation);
 
@@ -296,7 +323,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        Instantiate(enemyAttackEffect, activeBattleChars[currentTurn].transform.position, activeBattleChars[currentTurn].transform.rotation);
+        Instantiate(enemyAttackEffect, activeBattleChars[CurrentTurn].transform.position, activeBattleChars[CurrentTurn].transform.rotation);
 
         DealDamage(selectedTarget, movePower);
     }
@@ -304,7 +331,7 @@ public class BattleManager : MonoBehaviour
     public void DealDamage(int target, int movePower)
     {
 		// Base damage calculation
-		int baseDamage = (activeBattleChars[currentTurn].Strength + activeBattleChars[currentTurn].WeaponPower) * activeBattleChars[currentTurn].PlayerLevel;
+		int baseDamage = (activeBattleChars[CurrentTurn].Strength + activeBattleChars[CurrentTurn].WeaponPower) * activeBattleChars[CurrentTurn].PlayerLevel;
 
 		// Defense mitigation calculation
 		int defenseMitigation = (activeBattleChars[target].Defence + activeBattleChars[target].ArmorPower);
@@ -353,6 +380,115 @@ public class BattleManager : MonoBehaviour
             {
 				playerNames[i].gameObject.SetActive(false);
 			}
+        }
+    }
+
+    public void PlayerAttack(string moveName, int selectedTarget)
+    {
+ 		int movePower = 0;
+
+		for (int i = 0; i < movesList.Length; i++)
+		{
+			if (movesList[i].MoveName == moveName)
+			{
+				Instantiate(movesList[i].TheEffect, activeBattleChars[selectedTarget].transform.position, activeBattleChars[selectedTarget].transform.rotation);
+
+				movePower = movesList[i].MovePower;
+			}
+		}
+
+		Instantiate(enemyAttackEffect, activeBattleChars[CurrentTurn].transform.position, activeBattleChars[CurrentTurn].transform.rotation);
+
+		DealDamage(selectedTarget, movePower);
+
+        uiButtonsHolder.SetActive(false);
+
+        targetMenu.SetActive(false);
+
+        NextTurn();
+	}
+
+    public void OpenTargetMenu(string moveName)
+    {
+        targetMenu.SetActive(true);
+
+        List<int> enemies = new List<int>();
+
+        for (int i = 0; i < activeBattleChars.Count; i++)
+        {
+            if (!activeBattleChars[i].IsPlayer)
+            {
+                enemies.Add(i);
+            }
+        }
+
+        for (int i = 0; i < targetButtons.Length; i++)
+        {
+            if (enemies.Count > i)
+            {
+                targetButtons[i].gameObject.SetActive(true);
+
+                targetButtons[i].MoveName = moveName;
+
+				targetButtons[i].ActiveBattlerTarget = enemies[i];
+
+				targetButtons[i].TargetName.text = activeBattleChars[enemies[i]].CharName;
+			}
+            else
+            {
+				targetButtons[i].gameObject.SetActive(false);
+			}
+        }
+    }
+
+    public void OpenMagicMenu()
+    {
+        MagicMenu.SetActive(true);
+
+        for (int i = 0; i < magicButtons.Length; i++)
+        {
+            if (activeBattleChars[CurrentTurn].MovesAvailable.Length > i)
+            {
+                magicButtons[i].gameObject.SetActive(true);
+
+                magicButtons[i].SpellName = activeBattleChars[CurrentTurn].MovesAvailable[i];
+
+                magicButtons[i].NameText.text = magicButtons[i].SpellName;
+
+                for (int j= 0; j < movesList.Length; j++)
+                {
+                    if (movesList[j].MoveName == magicButtons[i].SpellName)
+                    {
+                        magicButtons[i].SpellCost = movesList[j].MoveCost;
+
+                        magicButtons[i].CostText.text = magicButtons[i].SpellCost.ToString();
+                    }
+                }
+            }
+            else
+            {
+				magicButtons[i].gameObject.SetActive(false);
+			}
+        }
+    }
+
+	public void Flee()
+    {
+        int fleeSuccess = Random.Range(0, 100);
+
+        if (fleeSuccess < chanceToFlee)
+        {
+            battleActive = false;
+
+            battleScene.SetActive(false);
+        }
+        else
+        {
+            NextTurn();
+
+            battleNotice.TheText.text = "Couldn't escape...";
+
+            battleNotice.Activate();
         }
     }
 }

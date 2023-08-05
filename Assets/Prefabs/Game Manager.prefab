@@ -114,7 +114,7 @@ MonoBehaviour:
   maxLevel: 99
   currentHp: 100
   maxHp: 100
-  currentMp: 0
+  currentMp: 1
   maxMp: 30
   mpLevelBonus: 
   strength: 4
