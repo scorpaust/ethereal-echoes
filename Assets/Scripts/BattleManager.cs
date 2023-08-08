@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,21 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private GameObject targetMenu;
 
+    public GameObject TargetMenu
+    {
+        get
+        {
+            return targetMenu;
+        }
+        set
+        {
+            targetMenu = value;
+        }
+    }
+
     public GameObject MagicMenu;
+
+    public GameObject ItemMenu;
 
     [SerializeField]
     private BattleTargetButton[] targetButtons;
@@ -55,11 +70,18 @@ public class BattleManager : MonoBehaviour
     private BattleMagicSelect[] magicButtons;
 
     [SerializeField]
+    private BattleItemSelect[] itemButtons;
+
+    [SerializeField]
     private int chanceToFlee;
 
     private bool battleActive;
 
+    public bool iteming = false;
+
     public List<BattleChar> activeBattleChars = new List<BattleChar>();
+
+    public List<int> playersToHeal = new List<int>();
 
     public int CurrentTurn { get; private set; }
 
@@ -78,8 +100,10 @@ public class BattleManager : MonoBehaviour
 
     private bool turnWaiting;
 
-    // Start is called before the first frame update
-    void Start()
+	public string ItemName;
+
+	// Start is called before the first frame update
+	void Start()
     {
         instance = this;
 
@@ -151,6 +175,8 @@ public class BattleManager : MonoBehaviour
                         newPlayer.transform.parent = playerPositions[i];
 
                         activeBattleChars.Add(newPlayer);
+
+                        playersToHeal.Add(j);
 
                         CharStats thePlayer = GameManager.instance.PlayerStats[i];
 
@@ -330,28 +356,55 @@ public class BattleManager : MonoBehaviour
 
     public void DealDamage(int target, int movePower)
     {
-		// Base damage calculation
-		int baseDamage = (activeBattleChars[CurrentTurn].Strength + activeBattleChars[CurrentTurn].WeaponPower) * activeBattleChars[CurrentTurn].PlayerLevel;
+        if (!iteming)
+        {
+			// Base damage calculation
+			int baseDamage = (activeBattleChars[CurrentTurn].Strength + activeBattleChars[CurrentTurn].WeaponPower) * activeBattleChars[CurrentTurn].PlayerLevel;
 
-		// Defense mitigation calculation
-		int defenseMitigation = (activeBattleChars[target].Defence + activeBattleChars[target].ArmorPower);
+			// Defense mitigation calculation
+			int defenseMitigation = (activeBattleChars[target].Defence + activeBattleChars[target].ArmorPower);
 
-		// Randomness factor (between 0.85 and 1.15 here)
-		float randomFactor = UnityEngine.Random.Range(0.85f, 1.15f);
-		
-        // Damage calculation after applying defense mitigation
-		// We use Mathf.Max to make sure that the damage is at least 1, 
-		// and doesn't go negative due to high defense.
-		int finalDamage = Mathf.RoundToInt(Mathf.Max(1, baseDamage - defenseMitigation) * randomFactor);
+			// Randomness factor (between 0.85 and 1.15 here)
+			float randomFactor = UnityEngine.Random.Range(0.85f, 1.15f);
 
-        activeBattleChars[target].CurrentHP -= finalDamage;
+			// Damage calculation after applying defense mitigation
+			// We use Mathf.Max to make sure that the damage is at least 1, 
+			// and doesn't go negative due to high defense.
+			int finalDamage = Mathf.RoundToInt(Mathf.Max(1, baseDamage - defenseMitigation) * randomFactor);
 
-        damageNumber.SetDamage(finalDamage);
+			activeBattleChars[target].CurrentHP -= finalDamage;
 
-		Instantiate(damageNumber, activeBattleChars[target].transform.position, activeBattleChars[target].transform.rotation);
+			damageNumber.SetDamage(finalDamage);
 
-        UpdateUIStats();
+			Instantiate(damageNumber, activeBattleChars[target].transform.position, activeBattleChars[target].transform.rotation);
+
+			UpdateUIStats();
+		}
+		else
+        {
+            UpdatePlayerStats();
+        }
     }
+
+    public void UpdatePlayerStats()
+    {
+		for (int i = 0; i < playerNames.Length; i++)
+		{
+			if (activeBattleChars.Count > i)
+			{
+				if (activeBattleChars[i].IsPlayer)
+				{
+					BattleChar playerData = activeBattleChars[i];
+
+					playerData.CurrentHP = GameManager.instance.PlayerStats[playersToHeal[i]].CurrentHp;
+
+					playerData.CurrentMp = GameManager.instance.PlayerStats[playersToHeal[i]].CurrentMp;
+
+					UpdateUIStats();
+				}
+			}
+		}
+	}
 
     public void UpdateUIStats()
     {
@@ -441,7 +494,32 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void OpenMagicMenu()
+	public void OpenPlayersMenu()
+	{
+		targetMenu.SetActive(true);
+
+        iteming = true;
+
+		for (int i = 0; i < playersToHeal.Count; i++)
+		{
+			if (playersToHeal.Count > i)
+			{
+				targetButtons[i].gameObject.SetActive(true);
+
+				targetButtons[i].ActiveBattlerTarget = playersToHeal[i];
+
+                itemButtons[i].targetToHeal = playersToHeal[i];
+
+				targetButtons[i].TargetName.text = activeBattleChars[playersToHeal[i]].CharName;
+			}
+			else
+			{
+				targetButtons[i].gameObject.SetActive(false);
+			}
+		}
+	}
+
+	public void OpenMagicMenu()
     {
         MagicMenu.SetActive(true);
 
@@ -471,6 +549,58 @@ public class BattleManager : MonoBehaviour
 			}
         }
     }
+
+    private bool canActivateButton(int button)
+    {
+        return GameManager.instance.GetItemDetails(GameManager.instance.itemsHeld[button]) && GameManager.instance.numberOfItems[button] > 0 && GameManager.instance.GetItemDetails(GameManager.instance.itemsHeld[button]).itemType == ItemType.Default;
+	}
+
+    private int activeItemButtons()
+    {
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            if (itemButtons[i].gameObject.activeInHierarchy)
+                return 1;
+        }
+
+        return 0;
+    }
+
+    public void OpenItemMenu()
+    {
+		ItemMenu.SetActive(true);
+
+		for (int i = 0; i < itemButtons.Length; i++)
+		{
+			if (canActivateButton(i))
+			{
+				Debug.Log(i);
+
+				itemButtons[i].gameObject.SetActive(true);
+
+				itemButtons[i].ItemName = GameManager.instance.itemsHeld[i];
+
+				itemButtons[i].ItemText.text = itemButtons[i].ItemName;
+
+				itemButtons[i].ItemCount = GameManager.instance.numberOfItems[i];
+
+				itemButtons[i].CountText.text = itemButtons[i].ItemCount.ToString();
+			}
+			else
+			{
+				itemButtons[i].gameObject.SetActive(false);
+
+				if (activeItemButtons() == 0)
+				{
+					ItemMenu.SetActive(false);
+					battleNotice.TheText.text = "No items available to use.";
+					battleNotice.Activate();
+				}
+			}
+
+		}
+
+	}
 
 	public void Flee()
     {

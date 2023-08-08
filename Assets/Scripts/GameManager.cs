@@ -256,6 +256,8 @@ public class GameManager : MonoBehaviour
                 itemsHeld[itemPosition] = "";
 			}
 
+            SortItems();
+
             GameMenu.instance.ShowItems();
 		}
         else

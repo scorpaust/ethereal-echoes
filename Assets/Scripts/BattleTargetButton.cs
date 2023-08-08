@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class BattleTargetButton : MonoBehaviour
 {
-    [SerializeField]
+	[SerializeField]
+	private GameObject healAmountText;
+
+	[SerializeField]
     private string moveName;
 
     public string MoveName
@@ -67,6 +70,23 @@ public class BattleTargetButton : MonoBehaviour
 
     public void Press()
     {
-        BattleManager.instance.PlayerAttack(moveName, activeBattlerTarget);
+        if (BattleManager.instance.iteming)
+        {
+            healAmountText.gameObject.GetComponentInChildren<Text>().text = GameManager.instance.GetItemDetails(BattleManager.instance.ItemName).amountToChange.ToString();
+
+            Instantiate(healAmountText, BattleManager.instance.activeBattleChars[activeBattlerTarget].transform.position, BattleManager.instance.activeBattleChars[BattleManager.instance.CurrentTurn].transform.rotation);
+
+            BattleManager.instance.UpdatePlayerStats();
+
+            BattleManager.instance.TargetMenu.SetActive(false);
+
+			BattleManager.instance.iteming = false;
+
+			BattleManager.instance.NextTurn();
+		}
+        else
+        {
+			BattleManager.instance.PlayerAttack(moveName, activeBattlerTarget);
+		}
     }
 }

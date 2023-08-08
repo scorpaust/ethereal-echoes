@@ -114,7 +114,7 @@ MonoBehaviour:
   maxLevel: 99
   currentHp: 100
   maxHp: 100
-  currentMp: 1
+  currentMp: 30
   maxMp: 30
   mpLevelBonus: 
   strength: 4
@@ -235,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsHeld:
   - HP Potion
+  - Mana Potion
   - Leather Armor
   - 
   - 
@@ -248,7 +249,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  numberOfItems: 0300000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  numberOfItems: 030000000100000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   referenceItems:
   - {fileID: 8984198633547691363, guid: b27650e41bd8d1043810442daa2c2df1, type: 3}
   - {fileID: 4033440681151650533, guid: bb906b26aa452b44588c24136850830d, type: 3}
