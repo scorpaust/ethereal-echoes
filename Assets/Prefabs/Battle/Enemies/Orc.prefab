@@ -103,7 +103,7 @@ MonoBehaviour:
   charName: Orc
   playerLevel: 2
   currentXp: 350
-  currentHP: 400
+  currentHP: 2
   maxHp: 400
   currentMp: 10
   maxMp: 10
@@ -111,3 +111,6 @@ MonoBehaviour:
   defence: 3
   weaponPower: 3
   armorPower: 2
+  theSprite: {fileID: 8662942876002190737}
+  deadSprite: {fileID: 0}
+  aliveSprite: {fileID: 0}

@@ -99,6 +99,7 @@ MonoBehaviour:
   movesAvailable: []
   hasDied: 0
   charName: Woody
+  playerLevel: 0
   currentXp: 1500
   currentHP: 250
   maxHp: 250
@@ -108,3 +109,6 @@ MonoBehaviour:
   defence: 5
   weaponPower: 5
   armorPower: 5
+  theSprite: {fileID: 5155909105457660477}
+  deadSprite: {fileID: 21300046, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}
+  aliveSprite: {fileID: 21300036, guid: e0ddba6d3fcf21f49949fcc95c849aac, type: 3}

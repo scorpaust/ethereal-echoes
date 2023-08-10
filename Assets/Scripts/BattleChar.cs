@@ -196,4 +196,74 @@ public class BattleChar : MonoBehaviour
 		}
 	}
 
+	[SerializeField]
+	private SpriteRenderer theSprite;
+
+	public SpriteRenderer TheSprite
+	{
+		get
+		{
+			return theSprite;
+		}
+
+		private set { }
+	}
+
+	[SerializeField]
+	private Sprite deadSprite;
+
+	public Sprite DeadSprite
+	{
+		get
+		{
+			return deadSprite;
+		}
+
+		private set { }
+	}
+
+	[SerializeField]
+	private Sprite aliveSprite;
+
+	public Sprite AliveSprite
+	{
+		get
+		{
+			return aliveSprite;
+		}
+
+		private set { }
+	}
+
+	private bool shouldFade;
+
+	private float fadeSpeed = 1f;
+
+	public float FadeSpeed
+	{
+		get
+		{
+			return fadeSpeed;
+		}
+
+		private set { }
+	}
+
+	public void EnemyFade()
+	{
+		shouldFade = true;
+	}
+
+	private void Update()
+	{
+        if (shouldFade)
+        {
+			theSprite.color = new Color(Mathf.MoveTowards(theSprite.color.r, 1f, fadeSpeed * Time.deltaTime), Mathf.MoveTowards(theSprite.color.g, 0f, fadeSpeed * Time.deltaTime), Mathf.MoveTowards(theSprite.color.b, 0f, fadeSpeed * Time.deltaTime), Mathf.MoveTowards(theSprite.color.a, 0f, fadeSpeed * Time.deltaTime));
+        }
+
+		if (theSprite.color.a == 0f)
+		{
+			gameObject.SetActive(false);
+		}
+    }
 }

@@ -76,9 +76,13 @@ public class BattleTargetButton : MonoBehaviour
 
             Instantiate(healAmountText, BattleManager.instance.activeBattleChars[activeBattlerTarget].transform.position, BattleManager.instance.activeBattleChars[BattleManager.instance.CurrentTurn].transform.rotation);
 
-            BattleManager.instance.UpdatePlayerStats();
+			GameManager.instance.GetItemDetails(BattleManager.instance.ItemName).Use(activeBattlerTarget);
 
-            BattleManager.instance.TargetMenu.SetActive(false);
+			BattleManager.instance.UpdatePlayerStats();
+
+			BattleManager.instance.UpdateGameManagerPlayerStats(BattleManager.instance.CurrentTurn);
+
+			BattleManager.instance.TargetMenu.SetActive(false);
 
 			BattleManager.instance.iteming = false;
 

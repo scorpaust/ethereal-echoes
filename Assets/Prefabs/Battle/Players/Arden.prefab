@@ -103,7 +103,7 @@ MonoBehaviour:
   charName: Arden
   playerLevel: 0
   currentXp: 0
-  currentHP: 100
+  currentHP: 2
   maxHp: 100
   currentMp: 30
   maxMp: 30
@@ -111,3 +111,6 @@ MonoBehaviour:
   defence: 10
   weaponPower: 0
   armorPower: 0
+  theSprite: {fileID: 5668551692615137250}
+  deadSprite: {fileID: 8888318505984086984, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}
+  aliveSprite: {fileID: -1038918931832879880, guid: a6b284c68db2cae4c965a3bc12ca83d3, type: 3}

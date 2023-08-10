@@ -92,8 +92,6 @@ public class BattleItemSelect : MonoBehaviour
 			BattleManager.instance.OpenPlayersMenu();
 
 			BattleManager.instance.ItemName = itemName;
-
-			GameManager.instance.GetItemDetails(itemName).Use(targetToHeal);
 		}
 		else
 		{

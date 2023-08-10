@@ -17,6 +17,16 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private int musicToPlay;
 
+    public int MusicToPlay
+    {
+        get
+        {
+            return musicToPlay;
+        }
+
+        private set { }
+    }
+
     private bool musicStarted;
 
     // Start is called before the first frame update

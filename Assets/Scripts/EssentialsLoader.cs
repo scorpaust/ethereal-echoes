@@ -9,7 +9,7 @@ public class EssentialsLoader : MonoBehaviour
     [SerializeField]
     private GameObject UIScreen;
 
-	/*[SerializeField]
+	[SerializeField]
     private GameObject player;
 
     public GameObject Player
@@ -19,13 +19,16 @@ public class EssentialsLoader : MonoBehaviour
         }
 
         private set {}
-    }*/
+    }
 
 	[SerializeField]
     private GameObject gameManager;
 
     [SerializeField]
     private GameObject audioManager;
+
+    [SerializeField]
+    private GameObject battleManager;
 
     public static EssentialsLoader instance;
 
@@ -41,12 +44,17 @@ public class EssentialsLoader : MonoBehaviour
             UIFade.instance = Instantiate(UIScreen).GetComponent<UIFade>();
 		}
         
-        /*if (PlayerController.instance == null)
+        if (PlayerController.instance == null)
 		{
             PlayerController clone = Instantiate(player).GetComponent<PlayerController>();
 
             PlayerController.instance = clone;
-		}*/
+		}
+
+        if (BattleManager.instance == null)
+        {
+            Instantiate(battleManager);
+        }
 
         if (AudioManager.instance == null)
         {
